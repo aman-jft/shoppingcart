@@ -6,6 +6,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.techntravels.cart.module.discount.Discounts;
+import org.techntravels.cart.module.discount.IDiscountModel;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -40,5 +43,10 @@ public class Cart {
 		if (amount == null || amount.compareTo(BigDecimal.ZERO) < 1)
 			return;
 		this.discounts.put(className, amount);
+	}
+	
+	public void checkout() {
+		IDiscountModel chain = Discounts.discountChain();
+		chain.apply(this);
 	}
 }

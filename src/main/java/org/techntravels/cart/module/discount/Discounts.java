@@ -1,21 +1,31 @@
 package org.techntravels.cart.module.discount;
 
+import org.techntravels.cart.domain.Cart;
 import org.techntravels.cart.module.config.ConfigConstant;
 import org.techntravels.cart.module.config.ConfigUtil;
 
 public class Discounts {
+	private static IDiscountModel chain;
 
 	public static void load() {
-		SaleDiscountModel saleDisModel = newSaleDisModel();
+		
+		chain = newSaleDisModel();
 
 		OldCustomerDiscountModel oldCustomerDisModel = newOldCustomerDisModel();
-		saleDisModel.setNextModel(oldCustomerDisModel);
+		chain.setNextModel(oldCustomerDisModel);
 
 		AffiliateDiscountModel affiliateDisModel = newAffiliateDisModel();
 		oldCustomerDisModel.setNextModel(affiliateDisModel);
 
 		EmployeeDiscountModel employeeDisModel = newEmployeeDisModel();
 		affiliateDisModel.setNextModel(employeeDisModel);
+	}
+	
+	public static IDiscountModel discountChain() {
+		if(chain==null) {
+			load();
+		}
+		return chain;
 	}
 
 	public static EmployeeDiscountModel newEmployeeDisModel() {

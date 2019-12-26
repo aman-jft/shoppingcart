@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 import java.math.BigDecimal;
 
 import org.junit.Test;
+import org.techntravels.cart.TestSetup;
 import org.techntravels.cart.domain.Cart;
 
 public class SaleDiscountModelTest {

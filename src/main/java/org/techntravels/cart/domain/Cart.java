@@ -6,16 +6,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.techntravels.cart.module.discount.Discounts;
 import org.techntravels.cart.module.discount.IDiscountModel;
+import org.techntravels.cart.service.DiscountService;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
-@Setter
-@ToString
 public class Cart {
 	private User user;
 	private List<Product> products = new LinkedList<>();
@@ -45,8 +43,13 @@ public class Cart {
 		this.discounts.put(className, amount);
 	}
 	
+	/**
+	 * After checkout, it will evaluate discount on products present in cart
+	 */
 	public void checkout() {
-		IDiscountModel chain = Discounts.discountChain();
+		
+		// Calculate Discount
+		IDiscountModel chain = DiscountService.discountChain();
 		chain.apply(this);
 	}
 }

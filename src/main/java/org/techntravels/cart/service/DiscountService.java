@@ -1,10 +1,14 @@
-package org.techntravels.cart.module.discount;
+package org.techntravels.cart.service;
 
-import org.techntravels.cart.domain.Cart;
 import org.techntravels.cart.module.config.ConfigConstant;
 import org.techntravels.cart.module.config.ConfigUtil;
+import org.techntravels.cart.module.discount.AffiliateDiscountModel;
+import org.techntravels.cart.module.discount.EmployeeDiscountModel;
+import org.techntravels.cart.module.discount.IDiscountModel;
+import org.techntravels.cart.module.discount.OldCustomerDiscountModel;
+import org.techntravels.cart.module.discount.SaleDiscountModel;
 
-public class Discounts {
+public class DiscountService {
 	private static IDiscountModel chain;
 
 	public static void load() {
@@ -43,9 +47,9 @@ public class Discounts {
 	public static OldCustomerDiscountModel newOldCustomerDisModel() {
 		return new OldCustomerDiscountModel(
 				ConfigUtil
-						.getDecimalValue(ConfigConstant.CART_DISCOUNT_AFFILIATE_PERCENTAGE),
+						.getDecimalValue(ConfigConstant.CART_DISCOUNT_OLD_CUSTOMER_PERCENTAGE),
 				ConfigUtil
-						.getIntValue(ConfigConstant.CART_DISCOUNT_AFFILIATE_PERCENTAGE));
+						.getIntValue(ConfigConstant.CART_DISCOUNT_OLD_CUSTOMER_MIN_AGE));
 	}
 
 	public static SaleDiscountModel newSaleDisModel() {

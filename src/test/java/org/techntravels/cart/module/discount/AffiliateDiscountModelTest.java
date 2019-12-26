@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 
 import org.junit.Test;
+import org.techntravels.cart.TestSetup;
 import org.techntravels.cart.domain.Cart;
 
 public class AffiliateDiscountModelTest {
@@ -83,13 +84,11 @@ public class AffiliateDiscountModelTest {
 		Cart cart = new Cart(TestSetup.affiliate);
 		cart.addProduct(TestSetup.charger);
 
-		HashMap<Class, BigDecimal> discounts = new HashMap<>();
-		discounts.put(OldCustomerDiscountModel.class, BigDecimal.ZERO);
-		cart.setDiscounts(discounts);
+		cart.addDiscount(OldCustomerDiscountModel.class, BigDecimal.ONE);
 
 		affiliateDiscountModel.apply(cart);
 
-		assertTrue(cart.total().compareTo(new BigDecimal(100.00)) == 0 ? true
+		assertTrue(cart.total().compareTo(new BigDecimal(99.00)) == 0 ? true
 				: false);
 	}
 
@@ -103,9 +102,7 @@ public class AffiliateDiscountModelTest {
 		Cart cart = new Cart(TestSetup.affiliate);
 		cart.addProduct(TestSetup.charger);
 
-		HashMap<Class, BigDecimal> discounts = new HashMap<>();
-		discounts.put(SaleDiscountModel.class, BigDecimal.TEN);
-		cart.setDiscounts(discounts);
+		cart.addDiscount(SaleDiscountModel.class, BigDecimal.TEN);
 
 		affiliateDiscountModel.apply(cart);
 

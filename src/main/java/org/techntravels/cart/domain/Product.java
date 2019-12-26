@@ -8,8 +8,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter
-@Setter
-@ToString
 @Builder
 public class Product {
 	public enum Type{

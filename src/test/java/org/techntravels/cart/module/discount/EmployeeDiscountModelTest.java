@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 
 import org.junit.Test;
+import org.techntravels.cart.TestSetup;
 import org.techntravels.cart.domain.Cart;
 
 public class EmployeeDiscountModelTest {
@@ -83,10 +84,8 @@ public class EmployeeDiscountModelTest {
 				new BigDecimal("0.3"));
 		Cart cart = new Cart(TestSetup.employee);
 		cart.addProduct(TestSetup.charger);
-
-		HashMap<Class, BigDecimal> discounts = new HashMap<>();
-		discounts.put(OldCustomerDiscountModel.class, BigDecimal.TEN);
-		cart.setDiscounts(discounts);
+		
+		cart.addDiscount(OldCustomerDiscountModel.class, BigDecimal.TEN);
 
 		employeeDiscountModel.apply(cart);
 
@@ -104,9 +103,7 @@ public class EmployeeDiscountModelTest {
 		Cart cart = new Cart(TestSetup.employee);
 		cart.addProduct(TestSetup.charger);
 
-		HashMap<Class, BigDecimal> discounts = new HashMap<>();
-		discounts.put(SaleDiscountModel.class, BigDecimal.TEN);
-		cart.setDiscounts(discounts);
+		cart.addDiscount(SaleDiscountModel.class, BigDecimal.TEN);
 
 		employeeDiscountModel.apply(cart);
 

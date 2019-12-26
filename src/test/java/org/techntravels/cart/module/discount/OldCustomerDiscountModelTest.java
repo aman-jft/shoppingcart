@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 
 import org.junit.Test;
+import org.techntravels.cart.TestSetup;
 import org.techntravels.cart.domain.Cart;
 
 public class OldCustomerDiscountModelTest {
@@ -84,13 +85,11 @@ public class OldCustomerDiscountModelTest {
 		Cart cart = new Cart(TestSetup.regular);
 		cart.addProduct(TestSetup.charger);
 
-		HashMap<Class, BigDecimal> discounts = new HashMap<>();
-		discounts.put(EmployeeDiscountModel.class, BigDecimal.ZERO);
-		cart.setDiscounts(discounts);
+		cart.addDiscount(EmployeeDiscountModel.class, BigDecimal.TEN);
 
 		oldCustomerDiscountModel.apply(cart);
 
-		assertTrue(cart.total().compareTo(new BigDecimal(100.00)) == 0 ? true
+		assertTrue(cart.total().compareTo(new BigDecimal(90.00)) == 0 ? true
 				: false);
 	}
 
@@ -103,10 +102,8 @@ public class OldCustomerDiscountModelTest {
 				new BigDecimal("0.05"), 2);
 		Cart cart = new Cart(TestSetup.regular);
 		cart.addProduct(TestSetup.charger);
-
-		HashMap<Class, BigDecimal> discounts = new HashMap<>();
-		discounts.put(SaleDiscountModel.class, BigDecimal.TEN);
-		cart.setDiscounts(discounts);
+		
+		cart.addDiscount(SaleDiscountModel.class, BigDecimal.TEN);
 
 		oldCustomerDiscountModel.apply(cart);
 

@@ -34,4 +34,4 @@ It has plugin to generate test report and coverage report
 
 ## Screenshot
 
-![Screenshot](https://github.com/aman-jft/shoppingcart/blob/images/runner.gif)
+![Screenshot](https://github.com/aman-jft/shoppingcart/blob/images/runner.png)

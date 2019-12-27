@@ -20,6 +20,7 @@ It has plugin to generate test report and coverage report
 - Check coverage report
   - target/site/jacoco/index.html
 
+## UML Diagram
 
 **Domains**
 
@@ -29,3 +30,8 @@ It has plugin to generate test report and coverage report
 
 
 ![Discount UML](https://github.com/aman-jft/shoppingcart/blob/images/discount.gif)
+
+
+## Screenshot
+
+![Screenshot](https://github.com/aman-jft/shoppingcart/blob/images/runner.gif)
